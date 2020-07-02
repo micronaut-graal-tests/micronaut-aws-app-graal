@@ -30,6 +30,7 @@ aws cloudformation deploy --template-file build/output-sam.yaml --stack-name $ST
 API_ENDPOINT=`aws cloudformation describe-stacks --stack-name $STACK_NAME | jq -r '.Stacks[0] .Outputs[0] .OutputValue'`
 
 curl $API_ENDPOINT/jokes/nerdy
+curl $API_ENDPOINT/jokes/566
 
 # To delete everything
 aws cloudformation delete-stack --stack-name $STACK_NAME

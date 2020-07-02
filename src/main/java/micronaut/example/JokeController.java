@@ -17,4 +17,9 @@ public class JokeController {
         return client.getRandomNerdyJoke().orElse(null);
     }
 
+    @Get("/{jokeId}")
+    public Joke getJokeById(String jokeId) {
+        return client.findJokeById(jokeId).orElse(null);
+    }
+
 }

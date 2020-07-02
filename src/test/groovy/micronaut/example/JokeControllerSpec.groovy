@@ -50,4 +50,20 @@ class JokeControllerSpec extends Specification {
         jokeResponse.value
         jokeResponse.factId
     }
+
+    void 'get a joke by id'() {
+        given:
+        AwsProxyRequest request = new AwsProxyRequestBuilder('/jokes/566', HttpMethod.GET.toString())
+            .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON)
+            .build()
+
+        when:
+        AwsProxyResponse response = handler.handleRequest(request, lambdaContext)
+
+        then:
+        HttpStatus.OK.code == response.statusCode
+        response.body
+        response.body == '{"type":"success","factId":566,"value":"Chuck Norris could use anything in java.util.* to kill you, including the javadocs."}'
+    }
+
 }
