@@ -21,6 +21,10 @@ Resources:
           Properties:
             Path: /{proxy+}
             Method: any
+  LogsLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      RetentionInDays: 7
 
 Outputs:
   MicronautNativeServiceApi:
