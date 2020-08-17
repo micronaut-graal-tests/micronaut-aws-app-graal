@@ -18,7 +18,7 @@ curl -X GET localhost:3000/jokes/nerdy
 To deploy to AWS:
 
 ```
-zip -j build/function.zip bootstrap mn-aws-app-graal
+zip -j build/function.zip bootstrap aws-app
 
 
 S3_BUCKET=USE-YOUR-OWN-BUCKET
