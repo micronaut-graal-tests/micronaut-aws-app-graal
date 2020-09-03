@@ -1,6 +1,0 @@
-applicationType: default
-defaultPackage: micronaut.example
-testFramework: spock
-sourceLanguage: java
-buildTool: gradle
-features: [app-name, aws-lambda, aws-lambda-custom-runtime, docker, file-watch, graalvm, gradle, java, logback, readme, shade, spock, yaml]
