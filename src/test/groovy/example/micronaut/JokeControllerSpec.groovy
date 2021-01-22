@@ -1,4 +1,4 @@
-package micronaut.example
+package example.micronaut
 
 import com.amazonaws.serverless.proxy.internal.testutils.AwsProxyRequestBuilder
 import com.amazonaws.serverless.proxy.internal.testutils.MockLambdaContext
