@@ -1,4 +1,10 @@
 #!/bin/bash
 
-./gradlew buildNativeLambda && \
-cp build/libs/mn-aws-app-graal-0.1-lambda.zip build/function.zip
+EXIT_STATUS=0
+
+./gradlew nativeImage || EXIT_STATUS=$?
+if [[ $EXIT_STATUS -eq 0 ]]; then
+  zip -j build/function.zip bootstrap build/native-image/application
+else
+  exit 1
+fi
