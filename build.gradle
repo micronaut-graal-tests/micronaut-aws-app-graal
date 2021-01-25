@@ -30,7 +30,11 @@ dependencies {
 }
 
 application {
-    mainClass.set("example.micronaut.Application")
+//    mainClass.set("example.micronaut.Application") // Use this to run the app locally with `./gradlew run`
+
+    // Using this is not necessary when building the function.zip inside docker with `./gradlew buildNativeLambda`, but
+    // we can't use that in CI, so setting it manually
+    mainClass.set("io.micronaut.function.aws.runtime.MicronautLambdaRuntime")
 }
 
 java {
