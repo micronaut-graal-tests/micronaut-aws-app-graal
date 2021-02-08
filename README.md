@@ -4,20 +4,27 @@ Test application for Micronaut application (with controllers) deployed to AWS as
 
 To build the application and test it locally:
 
-```
+```shell
 ./build-native-image.sh
 ./sam-local.sh
 ```
 
+To build the application inside Docker:
+
+```shell
+./gradlew buildNativeLambda -Pmicronaut.runtime=lambda
+cp build/libs/mn-aws-app-graal-0.1-lambda.zip build/function.zip
+```
+
 To send a request:
 
-```
+```shell
 curl -X GET localhost:3000/jokes/nerdy
 ```
 
 To deploy to AWS:
 
-```
+```shell
 S3_BUCKET=USE-YOUR-OWN-BUCKET
 STACK_NAME=USE-YOUR-OWN-STACK-NAME
 
