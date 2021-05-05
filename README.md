@@ -20,6 +20,7 @@ To send a request:
 
 ```shell
 curl -X GET localhost:3000/jokes/nerdy
+curl -X GET localhost:3000/github/releases
 ```
 
 To deploy to AWS:
