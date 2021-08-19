@@ -36,7 +36,7 @@ API_ENDPOINT=`aws cloudformation describe-stacks --stack-name $STACK_NAME | jq -
 
 curl $API_ENDPOINT/jokes/nerdy
 curl $API_ENDPOINT/jokes/566
-curl $API_ENDPOINT/bintray/packages
+curl $API_ENDPOINT/github/releases
 
 # To delete everything
 aws cloudformation delete-stack --stack-name $STACK_NAME
