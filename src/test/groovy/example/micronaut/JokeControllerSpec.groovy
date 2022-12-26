@@ -11,6 +11,7 @@ import io.micronaut.http.HttpHeaders
 import io.micronaut.http.HttpMethod
 import io.micronaut.http.HttpStatus
 import io.micronaut.http.MediaType
+import io.micronaut.http.uri.UriBuilder
 import spock.lang.AutoCleanup
 import spock.lang.Shared
 import spock.lang.Specification
@@ -41,19 +42,21 @@ class JokeControllerSpec extends Specification {
         response.body
 
         when:
-        println "response.body = " + response.body
         Map jokeResponse = objectMapper.readValue(response.body, Map<String, Object>)
 
         then:
         jokeResponse
-        jokeResponse.type == 'success'
+        jokeResponse.updated_at
+        jokeResponse.created_at
         jokeResponse.value
-        jokeResponse.factId
+        jokeResponse.id
     }
 
     void 'get a joke by id'() {
         given:
-        AwsProxyRequest request = new AwsProxyRequestBuilder('/jokes/566', HttpMethod.GET.toString())
+        String chuckNorrisId = "s2jM0EbWTFe-yMDkvM_JfQ"
+        String id =  chuckNorrisId
+        AwsProxyRequest request = new AwsProxyRequestBuilder(UriBuilder.of('/jokes').path(id).build().toString(), HttpMethod.GET.toString())
             .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON)
             .build()
 
@@ -63,7 +66,16 @@ class JokeControllerSpec extends Specification {
         then:
         HttpStatus.OK.code == response.statusCode
         response.body
-        response.body == '{"type":"success","factId":566,"value":"Chuck Norris could use anything in java.util.* to kill you, including the javadocs."}'
+
+        when:
+        Map jokeResponse = objectMapper.readValue(response.body, Map<String, Object>)
+
+        then:
+        jokeResponse
+        jokeResponse.updated_at
+        jokeResponse.created_at
+        "one day 7 year old Chuck Norris swam to europe, next day nazi surrendered" == jokeResponse.value
+        jokeResponse.id
     }
 
 }

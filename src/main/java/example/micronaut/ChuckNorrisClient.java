@@ -6,12 +6,12 @@ import io.micronaut.http.client.annotation.Client;
 import javax.validation.constraints.NotBlank;
 import java.util.Optional;
 
-@Client("https://api.icndb.com")
-public interface IcndbClient {
+@Client("https://api.chucknorris.io")
+public interface ChuckNorrisClient {
 
-    @Get("/jokes/random/?limitTo=[nerdy]")
-    Optional<Joke> getRandomNerdyJoke();
+    @Get("/jokes/random")
+    Optional<ChuckNorrisJoke> getRandomNerdyJoke();
 
     @Get("/jokes/{jokeId}")
-    Optional<Joke> findJokeById(@NotBlank String jokeId);
+    Optional<ChuckNorrisJoke> findJokeById(@NotBlank String jokeId);
 }

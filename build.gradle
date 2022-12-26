@@ -13,7 +13,7 @@ repositories {
 }
 
 micronaut {
-    runtime("netty")
+    runtime("lambda_provided")
     testRuntime("spock")
     processing {
         incremental(true)

@@ -6,19 +6,19 @@ import io.micronaut.http.annotation.Get;
 @Controller("/jokes")
 public class JokeController {
 
-    private final IcndbClient client;
+    private final ChuckNorrisClient client;
 
-    public JokeController(IcndbClient client) {
+    public JokeController(ChuckNorrisClient client) {
         this.client = client;
     }
 
     @Get("/nerdy")
-    public Joke getRndNerdy() {
+    public ChuckNorrisJoke getRndNerdy() {
         return client.getRandomNerdyJoke().orElse(null);
     }
 
     @Get("/{jokeId}")
-    public Joke getJokeById(String jokeId) {
+    public ChuckNorrisJoke getJokeById(String jokeId) {
         return client.findJokeById(jokeId).orElse(null);
     }
 
